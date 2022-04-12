@@ -1,0 +1,3 @@
+select datname as name
+     , pg_size_pretty(pg_database_size(datname)) as size
+  from ({% include 'sql/databases.sql' %}) s

@@ -1,0 +1,28 @@
+{# {% import 'databases_size.sql.j2' as databases_size_sql with context %} #}
+{# {% set databases_size = fetchall(databases_size_sql | string, {}) %} #}
+
+<turbo-frame id="test_frame">
+
+    <h1>Space</h1>
+
+    <div class="row">
+        <div class="col">
+            <div class="row pb-4">
+                <turbo-frame id="databases_size_frame" src="/test?template=databases_size&frame=databases_size_frame">
+                    {% include 'spinner.html.j2' %}
+                </turbo-frame>
+            </div>
+            <div class="row">
+                <turbo-frame id="big_tables_frame" src="/test?template=big_tables_chartjs&page=1&frame=big_tables_frame">
+                    {% include 'spinner.html.j2' %}
+                </turbo-frame>
+            </div>
+        </div>
+        <div class="col">
+            <turbo-frame id="tables_size_frame" src="/test?template=tables_size&page=1&frame=tables_size_frame">
+                {% include 'spinner.html.j2' %}
+            </turbo-frame>
+        </div>
+    </div>
+
+</turbo-frame>

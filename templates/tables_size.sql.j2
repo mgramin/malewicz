@@ -1,0 +1,6 @@
+select name
+     , pg_size_pretty(raw_size) as size
+  from (select table_name as name
+             , pg_total_relation_size(quote_ident(table_name)) as raw_size
+          from ({% include 'sql/tables.sql' %}) s) s
+ order by raw_size desc

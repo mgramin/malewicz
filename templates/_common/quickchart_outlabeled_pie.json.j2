@@ -1,0 +1,31 @@
+{
+    "type": "outlabeledPie",
+    "data": {
+        "labels": {{ chart_parameters["labels"] }},
+        "datasets": [
+            {
+                "backgroundColor": {{ chart_parameters["colors"] }},
+                "data": {{ chart_parameters["data"] }}
+            }
+        ]
+    },
+    "options": {
+        "title": {
+            "display": true,
+            "text": "{{ chart_name }}"
+        },
+        "plugins": {
+            "legend": false,
+            "outlabels": {
+                "text": "%l %p",
+                "color": "white",
+                "stretch": 35,
+                "font": {
+                    "resizable": true,
+                    "minSize": 12,
+                    "maxSize": 18
+                }
+            }
+        }
+    }
+}

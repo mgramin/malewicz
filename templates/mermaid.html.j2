@@ -1,0 +1,28 @@
+{% set params = { "schema_name": "bookings"} %}
+
+{% import 'sql/table_columns.sql' as table_columns_sql with context %}
+{% set columns = fetchall(table_columns_sql | string, params) %}
+
+{% import 'sql/table_relationships.sql' as table_relationships_sql with context %}
+{% set table_relationships = fetchall(table_relationships_sql | string, params) %}
+
+<turbo-frame id="test_frame">
+
+<div class="mermaid">
+    erDiagram
+        {% for table_name, table_columns in columns|groupby("table_name") %}
+            {{ table_name }} {
+                {% for table_column in table_columns %}
+                {{ table_column.column_name }} {{ table_column.data_type | replace(' ', '_') }}
+                {% endfor %}
+            }
+        {% endfor %}
+                
+        {% for table_relationship in table_relationships %}
+            {{ table_relationship["main_table"] }} ||--|{ {{ table_relationship["slave_table"] }} : contains
+        {% endfor %}
+</div>
+
+<script>mermaid.init()</script>
+
+</turbo-frame>

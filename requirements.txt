@@ -1,0 +1,13 @@
+click==8.0.4
+Flask==2.0.3
+flask-sock==0.5.2
+h11==0.13.0
+itsdangerous==2.1.1
+Jinja2==3.0.3
+MarkupSafe==2.1.1
+psycopg2==2.9.3
+simple-websocket==0.5.1
+toml==0.10.2
+Turbo-Flask==0.8.0
+Werkzeug==2.0.3
+wsproto==1.1.0

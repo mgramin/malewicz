@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+
+  db:
+    image: "mgramin/postgres-pro-demodb-small"
+
+  malewicz:
+    build: ../.
+    ports:
+      - "5000:5000"
+    volumes:
+      - ${PWD}/demo/config.toml:/app/config.toml
+    depends_on:
+      - db
+    
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        window: 3s
+        max_attempts: 20

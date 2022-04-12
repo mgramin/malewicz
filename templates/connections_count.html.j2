@@ -1,0 +1,7 @@
+{% import 'sql/connections_count.sql' as connections_count_sql with context %}
+{% set connections_count = fetchone(connections_count_sql | string, params) %}
+
+
+<turbo-frame id="{{ frame }}">
+Total: {{ connections_count['count'] }} connections
+</turbo-frame>

@@ -1,0 +1,20 @@
+{
+    "type": "doughnut",
+    "data": {
+        "labels": {{ chart_parameters['labels'] }},
+        "datasets": [{
+            "label": "# of Votes",
+            "data": {{ chart_parameters['data'] }},
+            "backgroundColor": {{ chart_parameters['colors'] }},
+            "borderWidth": 4,
+            "hoverOffset": 4
+        }]
+    },
+    "options": {
+        "scales": {
+            "y": {
+                "beginAtZero": false
+            }
+        }
+    }
+}

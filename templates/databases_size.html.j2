@@ -1,0 +1,23 @@
+{% import 'databases_size.sql.j2' as databases_size_sql with context %}
+{% set databases_size = fetchall(databases_size_sql | string, {}) %}
+
+<turbo-frame id="{{ frame }}">
+
+    <h3>Databases</h3>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
+
+    {% for db in databases_size  %}
+    <div class="col">
+        <div class="card">
+            <div class="card-header">"{{ db.name }}"</div>
+            <div class="card-body">
+                <h3 class="card-title">{{ db.size }}</h3>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    </div>
+
+</turbo-frame>

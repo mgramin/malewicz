@@ -1,4 +1,4 @@
-{% import 'databases_size.sql.j2' as databases_size_sql with context %}
+{% import 'pages/space/databases_size.sql.j2' as databases_size_sql with context %}
 {% set databases_size = fetchall(databases_size_sql | string, {}) %}
 
 <turbo-frame id="{{ frame }}">

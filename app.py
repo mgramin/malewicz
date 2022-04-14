@@ -106,11 +106,11 @@ def index():
 @app.route('/test', methods=['GET'])
 def test():
     page = request.args.get('page', default = 1, type = int)
-    template = request.args.get('template', default = "space")
+    template = request.args.get('template', default = "space/index.html.j2")
     frame = request.args.get('frame')
-    return render_template(template + ".html.j2", page = page, math = math, frame = frame)
+    return render_template("pages/" + template, page = page, math = math, frame = frame)
 
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, threaded=True)
+    app.run(host='0.0.0.0', port=port, threaded=True, debug=True)

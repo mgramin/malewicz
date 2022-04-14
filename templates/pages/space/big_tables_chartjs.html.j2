@@ -1,6 +1,6 @@
 {% set params = { "max_table_count": 5, "schema_name": "bookings"} %}
 
-{% import 'big_tables.sql.j2' as big_tables_sql with context %}
+{% import 'pages/space/big_tables.sql.j2' as big_tables_sql with context %}
 {% set chart_parameters = fetchone(big_tables_sql | string, params) %}
 
 {% import '_common/chartjs_doughnut.json.j2' as chartjs_doughnut_json with context %}

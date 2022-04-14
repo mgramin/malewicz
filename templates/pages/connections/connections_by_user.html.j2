@@ -1,4 +1,4 @@
-{% import 'connections_by_user.sql.j2' as connections_by_user_sql with context %}
+{% import 'pages/connections/connections_by_user.sql.j2' as connections_by_user_sql with context %}
 {% set chart_parameters = fetchone(connections_by_user_sql | string, params) %}
 
 {% import '_common/chartjs_doughnut.json.j2' as chartjs_doughnut_json with context %}

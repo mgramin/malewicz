@@ -1,0 +1,25 @@
+<turbo-frame id="test_frame">
+
+    <h1>Space</h1>
+
+    <div class="row">
+        <div class="col">
+            <div class="row pb-4">
+                <turbo-frame id="databases_size_frame" src="/test?template=space/databases_size.html.j2&frame=databases_size_frame">
+                    {% include '_common/spinner.html.j2' %}
+                </turbo-frame>
+            </div>
+            <div class="row">
+                <turbo-frame id="big_tables_frame" src="/test?template=space/big_tables_chartjs.html.j2&page=1&frame=big_tables_frame">
+                    {% include '_common/spinner.html.j2' %}
+                </turbo-frame>
+            </div>
+        </div>
+        <div class="col">
+            <turbo-frame id="tables_size_frame" src="/test?template=space/tables_size.html.j2&page=1&frame=tables_size_frame">
+                {% include '_common/spinner.html.j2' %}
+            </turbo-frame>
+        </div>
+    </div>
+
+</turbo-frame>

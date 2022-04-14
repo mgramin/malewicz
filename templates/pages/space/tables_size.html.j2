@@ -1,4 +1,4 @@
-{% import 'tables_size.sql.j2' as tables_size_sql with context %}
+{% import 'pages/space/tables_size.sql.j2' as tables_size_sql with context %}
 {% set tables_page = fetchpage(tables_size_sql, page, {}) %}
 
 <turbo-frame id="{{ frame }}">

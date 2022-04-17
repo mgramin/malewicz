@@ -18,6 +18,13 @@
       import * as Turbo from "https://cdn.skypack.dev/pin/@hotwired/turbo@v7.1.0-RBjb2wnkmosSQVoP27jT/min/@hotwired/turbo.js";
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad: false, theme: "forest"});</script>
+
     <title>Malewicz</title>
   </head>
   <body>
@@ -45,17 +52,17 @@
           <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
             <a class="navbar-brand" href="#">Navbar</a>
             <nav class="nav nav-pills flex-column">
-              <a class="nav-link" href="/test?template=tables/index.html.j2" data-turbo-frame="test_frame">Tables</a>
-              <a class="nav-link" href="/test?template=diagram/index.html.j2" data-turbo-frame="test_frame">Schema Diagram</a>
-              <a class="nav-link" href="/test?template=space/index.html.j2" data-turbo-frame="test_frame">Space</a>
-              <a class="nav-link" href="/test?template=connections/index.html.j2" data-turbo-frame="test_frame">Connections</a>
+              <a class="nav-link" href="/tables">Tables</a>
+              <a class="nav-link" href="/diagram">Schema Diagram</a>
+              <a class="nav-link" href="/space">Space</a>
+              <a class="nav-link" href="/connections">Connections</a>
             </nav>
           </nav>
         </div>    
 
         <div class="col p-3">
-          <turbo-frame id="test_frame" src="/test?page=1">
-            <div class="spinner-grow" role="status">
+          <turbo-frame id="test_frame" src="/test_part/{{ template }}?page=1">
+            <div class="spinner-border m-3" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
           </turbo-frame>
@@ -65,13 +72,6 @@
 
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad: false, theme: "forest"});</script>
-
   </body>
+
 </html>

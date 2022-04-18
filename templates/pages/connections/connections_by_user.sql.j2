@@ -2,5 +2,5 @@ select json_agg(usename) as labels
      , json_agg(count) as data
      , json_agg((select hex7
                    from ({% include "sql/colors.sql" without context %}) as clrs
-                  where clrs.id = s.id))::text as colors
+                  where clrs.color_id = mod(id, 11)))::text as colors
   from ({% include 'sql/connections_by_user.sql' %}) s

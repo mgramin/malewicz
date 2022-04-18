@@ -4,5 +4,5 @@ select json_agg(table_name || ' (' || pg_size_pretty(total_size) || ')')::text a
      , json_agg(total_size)::text as data
      , json_agg((select hex7
                    from ({% include "sql/colors.sql" without context %}) as clrs
-                  where clrs.id = rank))::text as colors
+                  where clrs.color_id = rank))::text as colors
   from ({{ big_tables_sql|string|indent(8, false) }}) s

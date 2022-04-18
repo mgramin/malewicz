@@ -119,8 +119,6 @@ def test2(section):
     template = section + "/index.html.j2"
     frame = request.args.get('frame')
     return render_template('index.html', template = section)
-    # else:
-        # return render_template("pages/" + template, template = section, page = page, math = math, frame = frame)
 
 
 @app.route('/test_part/<section>', methods=['GET'])

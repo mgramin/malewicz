@@ -100,14 +100,14 @@ def inject_stage_and_region():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    template = request.args.get('template', default = "tables")
+    template = request.args.get('template', default = "overview")
     return render_template('index.html', template = template)
 
 
 @app.route('/test', methods=['GET'])
 def test():
     page = request.args.get('page', default = 1, type = int)
-    template = request.args.get('template', default = "tables/index.html.j2")
+    template = request.args.get('template', default = "overview/index.html.j2")
     frame = request.args.get('frame')
     return render_template("pages/" + template, page = page, math = math, frame = frame)
 

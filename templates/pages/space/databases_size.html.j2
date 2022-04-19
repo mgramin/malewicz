@@ -1,15 +1,19 @@
-{% import 'pages/space/databases_size.sql.j2' as databases_size_sql with context %}
-{% set databases_size = fetchall(databases_size_sql | string, {}) %}
+{% import 'sql/top_largest_databases.sql' as query %}
+{% set databases_size = fetchall(query | string, {}) %}
 
 <turbo-frame id="{{ frame }}">
 
-    <h3>Databases</h3>
+    <h3>Top Databases</h3>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
+    <div class="row row-cols-auto">
 
     {% for db in databases_size  %}
     <div class="col">
-        <div class="card">
+        {% if db.is_current_database %}
+        <div class="card text-white bg-success mb-3">
+        {% else %}
+        <div class="card mb-3">
+        {% endif %}
             <div class="card-header">"{{ db.name }}"</div>
             <div class="card-body">
                 <h3 class="card-title">{{ db.size }}</h3>

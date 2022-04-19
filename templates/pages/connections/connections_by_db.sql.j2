@@ -1,6 +1,0 @@
-select json_agg(datname) as labels
-     , json_agg(count) as data
-     , json_agg((select hex7
-                   from ({% include "sql/colors.sql" %}) as clrs
-                  where clrs.color_id = mod(id, 11)))::text as colors
-  from ({% include 'sql/connections_by_db.sql' %}) s

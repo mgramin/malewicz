@@ -1,4 +1,4 @@
-select json_agg(usename) as labels
+select json_agg(state) as labels
      , json_agg(count) as data
      , json_agg(({% include "sql/colors.sql" %}))::text as colors
-  from ({% include 'sql/connections_by_user.sql' %}) s
+  from ({% include 'sql/connections_by_state.sql' %}) s

@@ -8,6 +8,7 @@
       </a>
     </li>
 
+
     {% for current_page in range(total_pages) %}
     <li class="page-item {% if current_page+1 == page %} active {% endif %}">
       {% if current_page+1 == page %}
@@ -15,10 +16,11 @@
           <span class="page-link">{{ current_page+1 }}</span>
         </li>          
       {% else %}
-        <a class="page-link" data-turbo-frame="test_frame" href="/test?template={{ template }}&page={{ current_page+1 }}">{{ current_page+1 }}</a>
+        <a class="page-link" href="/test?template={{ template }}&page={{ current_page+1 }}">{{ current_page+1 }}</a>
       {% endif%}
     </li>
     {% endfor %}
+    
     
     <li class="page-item disabled">
       <a class="page-link" href="#" aria-label="Next">

@@ -50,13 +50,18 @@ postgreSQL_pool = psycopg2.pool.SimpleConnectionPool(1, 20, user=user,
 
 
 def fetchone(query, params):
-    ps_connection = postgreSQL_pool.getconn()
-    cursor = ps_connection.cursor()
-    cursor.execute(query, params)
-    result = cursor.fetchone()
-    cursor.close()
-    postgreSQL_pool.putconn(ps_connection)
-    return result
+    try:
+        ps_connection = postgreSQL_pool.getconn()
+        cursor = ps_connection.cursor()
+        cursor.execute(query, params)
+        result = cursor.fetchone()
+        return result
+    except Exception as e:
+        print(e)
+        print(query)
+    finally:
+        cursor.close()
+        postgreSQL_pool.putconn(ps_connection)
 
 
 def fetchall(query, params):
@@ -90,7 +95,8 @@ def fetchpage(query, page_number, params):
     page_content = fetchall(result, params)
 
     # 3. responce with object { rows, total_pages, current_page, next_page, prev_page }
-    return Page(page_content, math.ceil(count/10), page_number)
+    # TODO put in page size in params file
+    return Page(page_content, math.ceil(count/15), page_number)
 
 
 @app.context_processor
@@ -116,9 +122,8 @@ def test():
 def test2(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
-    template = section + "/index.html.j2"
-    frame = request.args.get('frame')
-    return render_template('index.html', template = section)
+    print(page)
+    return render_template('index.html', template = section, page = page)
 
 
 @app.route('/test_part/<section>', methods=['GET'])

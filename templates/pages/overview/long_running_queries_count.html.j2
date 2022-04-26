@@ -1,0 +1,15 @@
+{% import 'sql/connections_count_active.sql' as query %}
+{% set active_connections = fetchone(query | string, {}) %}
+
+<turbo-frame id="{{ frame }}">
+
+    <div class="col">
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Long Queries</div>
+        <div class="card-body">
+          <h1 class="card-title text-center">0</h1>
+        </div>
+      </div>    
+    </div>
+
+</turbo-frame>

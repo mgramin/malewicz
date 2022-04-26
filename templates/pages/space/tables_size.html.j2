@@ -5,22 +5,21 @@
 
     <h3>Tables</h3>
 
-                <table class="table">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">Relation</th>
-                            <th scope="col">Size</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for table in tables_page.rows %}
-                        <tr>
-                            <td>{{ table.name }}</td>
-                            <td>{{ table.size }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Relation</th>
+                <th scope="col">Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables_page.rows %}
+            <tr>
+                <td>{{ table.name }}</td>
+                <td>{{ table.size }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 </turbo-frame>

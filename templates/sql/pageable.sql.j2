@@ -1,3 +1,4 @@
 {# TODO put in page size in params file #}
-{{ query_text }}
+select *
+  from ({{ query_text }}) sub
 offset {{ (page-1)*15 }} limit 15

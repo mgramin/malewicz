@@ -59,6 +59,7 @@ def fetchone(query, params):
     except Exception as e:
         print(e)
         print(query)
+        ps_connection.rollback()
     finally:
         cursor.close()
         postgreSQL_pool.putconn(ps_connection)
@@ -72,6 +73,7 @@ def fetchall(query, params):
         results = cursor.fetchall()
     except Exception as e:
         print(e)
+        print(query)
         ps_connection.rollback()
     finally:
         cursor.close()

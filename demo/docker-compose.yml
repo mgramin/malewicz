@@ -9,7 +9,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ${PWD}/demo/config.toml:/app/config.toml
+      - ${PWD}/config.toml:/app/config.toml
     depends_on:
       - db
     

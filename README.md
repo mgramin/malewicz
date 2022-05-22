@@ -21,7 +21,7 @@ Malewicz is Yet Another WEB client for DB schema exploring and performance analy
 - Support PostgreSQL (for now)
 
 
-### We were inspired by
+## We were inspired by
 
 - [dbt](https://github.com/dbt-labs/dbt-core) - Just drop your SQL-queries to your repository and the magic happens
 - [YeSQL](https://github.com/krisajenkins/yesql) - Keep the SQL as SQL

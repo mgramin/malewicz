@@ -3,7 +3,7 @@ import urllib.parse as urlparse
 
 from cgitb import text
 import string
-from flask import Flask, render_template, request, redirect, url_for, abort
+from flask import Flask, render_template, request, Response, redirect, url_for, abort
 
 import psycopg2
 from psycopg2 import pool
@@ -124,18 +124,19 @@ def test():
 def test2(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
-    print(page)
-    return render_template('index.html', template = section, page = page)
+    table_name = request.args.get('table_name')
+    val = render_template('index.html', template = section, page = page, table_name = table_name)
+    return Response(val, mimetype='text/html')
 
 
 @app.route('/test_part/<section>', methods=['GET'])
 def test_part(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
+    table_name = request.args.get('table_name')
     template = section + "/index.html.j2"
     frame = request.args.get('frame')
-    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame)
-
+    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame, table_name = table_name)
 
 
 if __name__ == '__main__':

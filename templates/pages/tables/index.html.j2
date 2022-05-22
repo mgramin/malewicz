@@ -9,12 +9,18 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">Name</th>
+                <th scope="col">Schema</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for table in tables_page.rows %}
             <tr>
                 <td>{{ table.table_name }}</td>
+                <td>{{ table.table_schema }}</td>
+                <td>
+                    <a href="/table" data-turbo-frame="_top" class="link-success">Show</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

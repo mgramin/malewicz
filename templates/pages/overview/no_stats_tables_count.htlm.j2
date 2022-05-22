@@ -1,13 +1,13 @@
-{% import 'sql/connections_count_active.sql' as query_text %}
+{% import 'sql/tables_no_stats.sql' as query_text %}
 {% import 'sql/count.sql.j2' as count_query with context %}
 {% set count = fetchone(count_query | string, {}).result %}
 
 <turbo-frame id="{{ frame }}">
 
     <div class="col">
-      <div class="card text-white {{ 'bg-success' if count==0 else 'bg-warning' }}  mb-3">
+      <div class="card text-white {{ 'bg-success' if count==0 else 'bg-warning' }} mb-3">
         <div class="card-header">
-          <a href="#" data-turbo-frame="_top" class="btn btn-primary stretched-link">Long Queries</a>
+            <a href="#" data-turbo-frame="_top" class="btn btn-primary stretched-link">No Stats Tables</a>
         </div>
         <div class="card-body">
           <h1 class="card-title text-center">{{ count }}</h1>

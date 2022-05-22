@@ -65,3 +65,10 @@ docker-compose up -d
 
 - Use Python-style naming for parameters: `%(schema_name)s`, `%(max_table_count)s`
 - Keep to [axis](https://gramin.pro/posts/rivers-and-axis) when formatting
+
+
+## Recomended VS Code plugins
+
+For productive and fast work with SQL scripts and Jinja2 templates we use [Visual Studio Code](https://github.com/microsoft/vscode) with some additional plugins:
+
+- [Better Jinja](https://marketplace.visualstudio.com/items?itemName=samuelcolvin.jinjahtml) - Syntax highlighting for jinja(2) including HTML, SQL, JSON, Markdown and other templates.

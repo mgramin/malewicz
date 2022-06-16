@@ -101,9 +101,18 @@ def fetchpage(query, page_number, params):
     return Page(page_content, math.ceil(count/15), page_number)
 
 
+def fetchcount(query, params):
+    with open('templates/sql/count.sql.j2', 'r') as file:
+        data = file.read().rstrip()
+    count_template = Template(data)
+    result = count_template.render(query_text=query)
+    count = fetchone(result, params)["result"]
+    return count
+
+
 @app.context_processor
 def inject_stage_and_region():
-    return dict(fetchone=fetchone, fetchall=fetchall, fetchpage=fetchpage)
+    return dict(fetchone=fetchone, fetchall=fetchall, fetchpage=fetchpage, fetchcount=fetchcount)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -124,8 +133,7 @@ def test():
 def test2(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
-    table_name = request.args.get('table_name')
-    val = render_template('index.html', template = section, page = page, table_name = table_name)
+    val = render_template('index.html', template = section, page = page)
     return Response(val, mimetype='text/html')
 
 
@@ -133,10 +141,9 @@ def test2(section):
 def test_part(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
-    table_name = request.args.get('table_name')
     template = section + "/index.html.j2"
     frame = request.args.get('frame')
-    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame, table_name = table_name)
+    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame)
 
 
 if __name__ == '__main__':

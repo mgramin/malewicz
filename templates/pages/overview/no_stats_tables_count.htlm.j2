@@ -1,6 +1,5 @@
-{% import 'sql/tables_no_stats.sql' as query_text %}
-{% import 'sql/count.sql.j2' as count_query with context %}
-{% set count = fetchone(count_query | string, {}).result %}
+{% import 'sql/tables_no_stats.sql' as query %}
+{% set count = fetchcount(query, {}) %}
 
 <turbo-frame id="{{ frame }}">
 

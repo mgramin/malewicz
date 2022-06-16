@@ -21,6 +21,11 @@ Malewicz is Yet Another WEB client for DB schema exploring and performance analy
 - Support PostgreSQL (for now)
 
 
+## Embedded SQL editor
+
+Malewicz **has no** embedded SQL editor. Instead, you might use your favorite code editor (like Vim or VS Code) or IDE (like DBeaver or DataGrips).
+
+
 ## We were inspired by
 
 - [dbt](https://github.com/dbt-labs/dbt-core) - Just drop your SQL-queries to your repository and the magic happens

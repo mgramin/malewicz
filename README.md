@@ -23,7 +23,7 @@ Malewicz is Yet Another WEB client for DB schema exploring and performance analy
 
 ## Embedded SQL editor
 
-Malewicz **has no** embedded SQL editor. Instead, you might use your favorite code editor (like Vim or VS Code) or IDE (like DBeaver or DataGrips).
+Malewicz **has no** embedded SQL editor. Instead, you might use your favorite code editor (like Vim or VS Code) or IDE (like DBeaver or DataGrips) for edit plain sql-files.
 
 
 ## We were inspired by

@@ -1,5 +1,7 @@
 select distinct 
-       ccu.table_name as main_table
+       ccu.table_schema as main_schema
+     , ccu.table_name as main_table
+     , tc.table_schema as slave_schema
      , tc.table_name as slave_table
   from information_schema.table_constraints as tc
   join information_schema.key_column_usage as kcu on tc.constraint_name = kcu.constraint_name

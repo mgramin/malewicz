@@ -1,0 +1,7 @@
+select s.main_schema
+     , s.main_table
+     , s.slave_schema
+     , s.slave_table
+  from ({% include 'sql/table_relationships.sql' %}) s
+ where (main_schema = %(schema_name)s and main_table = %(table_name)s)
+    or (slave_schema = %(schema_name)s and slave_table = %(table_name)s)

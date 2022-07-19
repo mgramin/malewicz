@@ -1,6 +1,19 @@
+{% set prm = { "schema_name": params.schema_name, "table_name": params.table_name } %}
+
+{% import 'pages/table/dependencies.sql.j2' as table_relationships_sql with context %}
+{% set table_relationships = fetchall(table_relationships_sql | string, prm) %}
+
 <turbo-frame id="{{ frame }}">
 
     <h2>Dependencies</h2>
 
+    <div class="mermaid">
+        erDiagram
+            {% for table_relationship in table_relationships %}
+                {{ table_relationship["main_table"] }} ||--|{ {{ table_relationship["slave_table"] }} : contains
+            {% endfor %}
+    </div>
+
+    <script>mermaid.init()</script>
 
 </turbo-frame>

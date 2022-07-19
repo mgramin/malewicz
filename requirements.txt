@@ -1,6 +1,7 @@
 click==8.0.4
 Flask==2.0.3
 flask-sock==0.5.2
+flask_accept==0.0.6
 h11==0.13.0
 itsdangerous==2.1.1
 Jinja2==3.0.3

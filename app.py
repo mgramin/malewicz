@@ -5,6 +5,13 @@ from cgitb import text
 import string
 from flask import Flask, render_template, request, Response, redirect, url_for, abort
 
+
+from flask import jsonify
+
+
+from flask_accept import accept
+
+
 import psycopg2
 from psycopg2 import pool
 
@@ -126,14 +133,22 @@ def test():
     page = request.args.get('page', default = 1, type = int)
     template = request.args.get('template', default = "overview/index.html.j2")
     frame = request.args.get('frame')
-    return render_template("pages/" + template, page = page, math = math, frame = frame)
+
+    params = request.args.to_dict()
+    x = '&'.join('='.join((key,val)) for (key,val) in params.items())
+
+    return render_template("pages/" + template, page = page, math = math, frame = frame, params = params, params_str = x)
 
 
 @app.route('/<section>', methods=['GET'])
 def test2(section):
     assert section == request.view_args['section']
     page = request.args.get('page', default = 1, type = int)
-    val = render_template('index.html', template = section, page = page)
+
+    params = request.args.to_dict()
+    x = '&'.join('='.join((key,val)) for (key,val) in params.items())
+
+    val = render_template('index.html', template = section, page = page, params = params, params_str = x)
     return Response(val, mimetype='text/html')
 
 
@@ -143,7 +158,26 @@ def test_part(section):
     page = request.args.get('page', default = 1, type = int)
     template = section + "/index.html.j2"
     frame = request.args.get('frame')
-    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame)
+
+    params = request.args.to_dict()
+    x = '&'.join('='.join((key,val)) for (key,val) in params.items())
+
+    return render_template("pages/" + template, template = section, page = page, math = math, frame = frame, params = params, params_str = x)
+
+
+
+@app.route('/api/query/<query_name>', methods=['GET'])
+@accept('text/csv')
+def test_test(query_name):
+    with open('templates/sql/' + query_name + '.sql', 'r') as file:
+        query = file.read().replace('\n', '')
+
+    data = fetchall(query, [])
+    keys = data[0].keys()
+    result = [list(keys)] + [list(row.values()) for row in data]
+    str_result = '\n'.join([';'.join(str(val) for val in row) for row in result])
+    return str_result
+
 
 
 if __name__ == '__main__':

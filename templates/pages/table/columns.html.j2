@@ -1,0 +1,44 @@
+{% import 'sql/table_columns.sql' as query with context %}
+{% set columns = fetchall(
+    query | string,
+    { "table_name": params.table_name, "schema_name": params.schema_name }) 
+%}
+
+<turbo-frame id="{{ frame }}">
+
+    <h2>Columns</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Pos.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Nullable</th>
+                    <th scope="col">Length</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in columns %}
+                <tr>
+                    <td>{{ c.ordinal_position }}</td>
+                    <td>{{ c.column_name }}</td>
+                    <td>{{ c.data_type }}</td>
+                    <td>
+                        {% if c.is_nullable == 'YES' %}
+                        <i class="bi bi-check-lg"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if c.character_maximum_length %}
+                        {{ c.character_maximum_length }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</turbo-frame>

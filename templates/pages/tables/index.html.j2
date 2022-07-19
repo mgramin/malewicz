@@ -14,12 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for table in tables_page.rows %}
+            {% for t in tables_page.rows %}
             <tr>
-                <td>{{ table.table_name }}</td>
-                <td>{{ table.table_schema }}</td>
+                <td>{{ t.table_name }}</td>
+                <td>{{ t.table_schema }}</td>
                 <td>
-                    <a href="/table" data-turbo-frame="_top" class="link-success">Show</a>
+                    <a href="/table?table_name={{ t.table_name }}&schema_name={{ t.table_schema }}" 
+                    data-turbo-frame="_top" class="link-success">Show</a>
                 </td>
             </tr>
             {% endfor %}

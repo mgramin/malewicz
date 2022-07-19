@@ -1,5 +1,21 @@
 <turbo-frame id="test_frame">
 
-    <h1>Table "{{ table_name }}"</h1>
+    <h1>Table "{{ params.schema_name }}.{{ params.table_name }}"</h1>
+
+    <div class="row">
+
+        <div class="col">
+            <turbo-frame id="columns_frame" src="/test?template=table/columns.html.j2&frame=columns_frame&{{ params_str }}">
+                {% include '_common/spinner.html.j2' %}
+            </turbo-frame>
+        </div>
+
+        <div class="col">
+            <turbo-frame id="dependencies_frame" src="/test?template=table/dependencies.html.j2&frame=dependencies_frame&{{ params_str }}">
+                {% include '_common/spinner.html.j2' %}
+            </turbo-frame>
+        </div>
+
+    </div>
 
 </turbo-frame>

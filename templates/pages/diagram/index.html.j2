@@ -1,4 +1,4 @@
-{% set params = { "schema_name": "bookings"} %}
+{% set params = { "schema_name": "bookings", "table_name": ".*"} %}
 
 {% import 'sql/table_columns.sql' as table_columns_sql with context %}
 {% set columns = fetchall(table_columns_sql | string, params) %}

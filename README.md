@@ -10,7 +10,9 @@ Hackable GUI SQL-manager written in SQL itself (and a pinch of the purest HTML, 
 [See it in action](https://malewicz.herokuapp.com)
 
 
-:warning: This experimental project is in early development phase. If you have ideas, feel free to text me, create a PR or open an issue.
+## Current status
+
+:warning: This experimental project is in early development phase. If you have ideas, feel free to [text me](mailto:mgramin@gmail.com), create a PR or open an issue.
 
 
 ## What is Malewicz?

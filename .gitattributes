@@ -1,3 +1,4 @@
 *.sql linguist-detectable=true
 *.sql linguist-language=sql
+*.sql.j2 linguist-detectable=true
 *.sql.j2 linguist-language=sql

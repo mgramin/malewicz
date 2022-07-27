@@ -1,0 +1,10 @@
+select name             -- Name
+     , size             -- Size
+     , stats_age        -- Stats age
+     , cache_eff        -- Cache eff. (%%)
+     , committed        -- Committed (%%)
+     , conflicts        -- Conflicts
+     , deadlocks        -- Deadlocks
+     , temp_files_count -- Temp files count
+     , temp_files_size  -- Temp files size
+  from ({% include 'sql/databases_stats.sql' %}) as s

@@ -1,7 +1,7 @@
 {% import 'sql/table_columns.sql' as query with context %}
 {% set columns = fetchall(
     query | string,
-    { "table_name": params.table_name, "schema_name": params.schema_name }) 
+    { "table_name": params.table_name, "schema_name": params.schema_name }).rows
 %}
 
 <turbo-frame id="{{ frame }}">

@@ -1,7 +1,7 @@
 {% set prm = { "schema_name": params.schema_name, "table_name": params.table_name } %}
 
 {% import 'pages/table/dependencies.sql.j2' as table_relationships_sql with context %}
-{% set table_relationships = fetchall(table_relationships_sql | string, prm) %}
+{% set table_relationships = fetchall(table_relationships_sql | string, prm).rows %}
 
 <turbo-frame id="{{ frame }}">
 

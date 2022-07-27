@@ -26,5 +26,3 @@ select sum(calls) as calls
      , array_agg(queryid) as queryids
   from pg_stat_statements
  group by userid, dbid, query
- order by sum(total_exec_time) desc
- limit 50

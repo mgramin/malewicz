@@ -1,32 +1,7 @@
 {% extends "components/table.html.j2" %}
-{% set model_path = 'sql/databases_stats.sql' %}
+{% set model_path = 'pages/databases_stats/databases_stats.sql.j2' %}
 
 
-{% block head %}
-    <th scope="col">Name</th>
-    <th scope="col">Size</th>
-    <th scope="col">Stats age</th>
-    <th scope="col">Cache eff. (%)</th>
-    <th scope="col">Committed (%)</th>
-    <th scope="col">Conflicts</th>
-    <th scope="col">Deadlocks</th>
-    <th scope="col">Temp files count</th>
-    <th scope="col">Temp files size</th>
-{% endblock %}
-
-
-{% block body %}
-    {% for database in page_data.rows %}
-    <tr>
-        <td>{{ database.name }}</td>
-        <td>{{ database.size }}</td>
-        <td>{{ database.stats_age }}</td>
-        <td>{{ database.cache_eff }}</td>
-        <td>{{ database.committed }}</td>
-        <td>{{ database.conflicts }}</td>
-        <td>{{ database.deadlocks }}</td>
-        <td>{{ database.temp_files_count }}</td>
-        <td>{{ database.temp_files_size }}</td>
-    </tr>
-    {% endfor %}
+{% block title %}
+    <h1>Databases</h1>
 {% endblock %}

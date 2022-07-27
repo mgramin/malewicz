@@ -5,10 +5,6 @@ from cgitb import text
 import string
 from flask import Flask, render_template, request, Response, redirect, url_for, abort
 
-
-from flask import jsonify
-
-
 from flask_accept import accept
 
 
@@ -19,7 +15,7 @@ import toml
 
 import math
 
-from models import Page
+from models import Page, Data
 
 from psycopg2.extras import DictCursor
 
@@ -78,34 +74,40 @@ def fetchall(query, params):
     try:
         cursor.execute(query, params)
         results = cursor.fetchall()
+        fields = [i[0] for i in cursor.description]
     except Exception as e:
-        print(e)
-        print(query)
         ps_connection.rollback()
     finally:
         cursor.close()
         postgreSQL_pool.putconn(ps_connection)
-    return results
+    return Data(results, fields) 
 
 
 def fetchpage(query, page_number, params):
-    # 1. get rows count (with count.sql.j2 template)
-    with open('templates/sql/count.sql.j2', 'r') as file:
-        data = file.read().rstrip()
-    count_template = Template(data)
-    result = count_template.render(query_text=query)
-    count = fetchone(result, params)["result"]
+    try:
+        # 1. get rows count (with count.sql.j2 template)
+        with open('templates/sql/count.sql.j2', 'r') as file:
+            data = file.read().rstrip()
+        count_template = Template(data)
+        result = count_template.render(query_text=query)
+        count = fetchone(result, params)["result"]
 
-    # 2. get rows for page (with pageable.j2.sql template)
-    with open('templates/sql/pageable.sql.j2', 'r') as file:
-        data = file.read().rstrip()
-    page_template = Template(data)
-    result = page_template.render(query_text=query, page=page_number)
-    page_content = fetchall(result, params)
+        # 2. get rows for page (with pageable.j2.sql template)
+        with open('templates/sql/pageable.sql.j2', 'r') as file:
+            data = file.read().rstrip()
+        page_template = Template(data)
+        result = page_template.render(query_text=query, page=page_number)
+        page_content = fetchall(result, params)
 
-    # 3. responce with object { rows, total_pages, current_page, next_page, prev_page }
-    # TODO put in page size in params file
-    return Page(page_content, math.ceil(count/15), page_number)
+        # 3. responce with object { rows, total_pages, current_page, next_page, prev_page }
+        # TODO put in page size in params file
+        new_page = Page(page_content.rows, math.ceil(count/15), page_number, page_content.fields)
+        return new_page
+
+    except Exception as e:
+        print(e)
+        print(query)
+    
 
 
 def fetchcount(query, params):
@@ -142,14 +144,17 @@ def test():
 
 @app.route('/<section>', methods=['GET'])
 def test2(section):
-    assert section == request.view_args['section']
-    page = request.args.get('page', default = 1, type = int)
+    try:
+        assert section == request.view_args['section']
+        page = request.args.get('page', default = 1, type = int)
 
-    params = request.args.to_dict()
-    x = '&'.join('='.join((key,val)) for (key,val) in params.items())
+        params = request.args.to_dict()
+        x = '&'.join('='.join((key,val)) for (key,val) in params.items())
 
-    val = render_template('index.html', template = section, page = page, params = params, params_str = x)
-    return Response(val, mimetype='text/html')
+        val = render_template('index.html', template = section, page = page, params = params, params_str = x)
+        return Response(val, mimetype='text/html')
+    except Exception as e:
+        print(e)
 
 
 @app.route('/test_part/<section>', methods=['GET'])

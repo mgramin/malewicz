@@ -1,5 +1,5 @@
 {% import 'sql/top_largest_databases.sql' as query %}
-{% set databases_size = fetchall(query | string, {}) %}
+{% set databases_size = fetchall(query | string, {}).rows %}
 
 <turbo-frame id="{{ frame }}">
 

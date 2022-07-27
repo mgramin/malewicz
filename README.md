@@ -23,11 +23,12 @@ Malewicz is Yet Another WEB client for DB schema exploring and performance analy
 
 - Hackable - Malewicz was originally created specifically for hacking and extending (template driven, live reload)
 - Suprematistic - use only your SQL skills (and a little bit HTML) without any noisy boilerplate code
+- Template driven - ...
 - Lightning-fast AJAX web interface - but without a single line of JavaScript (we use [Hotwire Turbo](https://turbo.hotwired.dev))
 - SQL Market - Make your own templates, share it and use foreign templates
 - Simple and powerful integration with awesome tools, for charts, diagrams etc.
-- Support PostgreSQL (for now)
-- You can reuse your SQL in other contexts and database tools.
+- Support only PostgreSQL (for now) - but you might ...
+- Reusable SQL-queries - SQL is the main value... You can reuse your SQL in other contexts and database tools.
 
 
 ## Embedded SQL editor

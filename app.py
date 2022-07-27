@@ -137,7 +137,7 @@ def test():
     params = request.args.to_dict()
     x = '&'.join('='.join((key,val)) for (key,val) in params.items())
 
-    return render_template("pages/" + template, page = page, math = math, frame = frame, params = params, params_str = x)
+    return render_template("pages/" + template, template=template, page = page, math = math, frame = frame, params = params, params_str = x)
 
 
 @app.route('/<section>', methods=['GET'])

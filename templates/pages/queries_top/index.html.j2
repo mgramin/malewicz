@@ -1,0 +1,30 @@
+{% extends "components/table.html.j2" %}
+{% set model_path = 'sql/queries_top.sql' %}
+
+
+{% block title %}
+    <h1>Slow Queries</h1>
+    <span>Slowest queries, by total time</span>
+{% endblock %}
+
+
+{% block head %}
+    <th scope="col">Total Exec Time</th>
+    <th scope="col">Calls</th>
+    <th scope="col">Mean Exec Time</th>
+    <th scope="col">Min Exec Time</th>
+    <th scope="col">Max Exec Time</th>
+{% endblock %}
+
+
+{% block body %}
+    {% for row in page_data.rows %}
+     <tr>
+         <td>{{ row.total_exec_time }}</td>
+         <td>{{ row.calls }}</td>
+         <td>{{ row.mean_exec_time }}</td>
+         <td>{{ row.min_exec_time }}</td>
+         <td>{{ row.max_exec_time }}</td>
+     </tr>
+     {% endfor %}
+{% endblock %}

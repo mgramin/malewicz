@@ -1,34 +1,25 @@
-{% import 'sql/tables.sql' as tables_sql with context %}
-{% set tables_page = fetchpage(tables_sql, page, {}) %}
+{% extends "components/table.html.j2" %}
+{% set model_path = 'sql/tables.sql' %}
 
-<turbo-frame id="test_frame">
 
-    <h1>Tables</h1>
+{% block head %}
+    <th scope="col">Name</th>
+    <th scope="col">Actions</th>
+{% endblock %}
 
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Schema</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in tables_page.rows %}
-            <tr>
-                <td>{{ t.table_name }}</td>
-                <td>{{ t.table_schema }}</td>
-                <td>
-                    <a href="/table?table_name={{ t.table_name }}&schema_name={{ t.table_schema }}" 
-                    data-turbo-frame="_top" class="link-success">Show</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
-    {% set total_pages = tables_page.total_pages %}
-    {% set template = 'tables/index.html.j2' %}
-    {% include '_common/pagination.html.j2' %}
-
-</turbo-frame>
+{% block body %}
+    {% for t in page_data.rows %}
+    <tr>
+        <td>{{ t.table_name | upper }}</td>
+        <td>
+            <a href="/table?table_name={{ t.table_name }}&schema_name={{ t.table_schema }}" 
+            data-turbo-frame="_top" class="link-success">Data</a>
+            <a href="/table?table_name={{ t.table_name }}&schema_name={{ t.table_schema }}" 
+            data-turbo-frame="_top" class="link-info">Info</a>
+            <a href="/table?table_name={{ t.table_name }}&schema_name={{ t.table_schema }}" 
+            data-turbo-frame="_top" class="link-danger">Drop</a>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}

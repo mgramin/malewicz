@@ -1,0 +1,30 @@
+{% import model_path as model_query with context %}
+{% set page_data = fetchpage(model_query, page, {}) %}
+
+<turbo-frame id="{{ frame or 'test_frame' }}">
+
+    {% block title %}
+        <h1>{{ model_name | title }}</h1>
+    {% endblock %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    {% block head %}
+                    {% endblock %}
+                </tr>
+            </thead>
+            <tbody>
+                {% block body %}
+                {% endblock %}
+            </tbody>
+    </table>
+    </div>
+
+    {# TODO move to macros #}
+    {% set total_pages = page_data.total_pages %}
+    {% set template = template %}
+    {% include '_common/pagination.html.j2' %}
+
+</turbo-frame>

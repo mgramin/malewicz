@@ -1,25 +1,20 @@
-{% import 'pages/space/tables_size.sql.j2' as tables_size_sql with context %}
-{% set tables_page = fetchpage(tables_size_sql, page, {}) %}
+{% extends "components/table.html.j2" %}
+{% set model_path = 'pages/space/tables_size.sql.j2' %}
 
-<turbo-frame id="{{ frame }}">
+{% block title %}
+    <h2>Tables</h2>
+{% endblock %}
 
-    <h3>Tables</h3>
+{% block head %}
+    <th scope="col">Relation</th>
+    <th scope="col">Size</th>
+{% endblock %}
 
-    <table class="table">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Relation</th>
-                <th scope="col">Size</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for table in tables_page.rows %}
-            <tr>
-                <td>{{ table.name }}</td>
-                <td>{{ table.size }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-</turbo-frame>
+{% block body %}
+    {% for table in page_data.rows %}
+    <tr>
+        <td>{{ table.name }}</td>
+        <td>{{ table.size }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

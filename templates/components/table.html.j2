@@ -1,5 +1,5 @@
 {% import model_path as model_query with context %}
-{% set page_data = fetchpage(model_query, page, {}) %}
+{% set page_data = fetchpage(model_query, page, params) %}
 
 <turbo-frame id="{{ frame or 'test_frame' }}">
 
@@ -13,8 +13,8 @@
             <thead class="table-dark">
                 <tr>
                     {% block head %}
-                        {% for f in page_data.fields %}
-                            <th scope="col">{{ f }}</th>
+                        {% for key, values in page_data.fields.items() %}
+                            <th scope="col">{{ values }}</th>
                         {% endfor %}
                     {% endblock %}
                 </tr>

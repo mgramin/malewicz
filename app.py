@@ -1,8 +1,9 @@
 import os
 import urllib.parse as urlparse
 
+from query import Query
+
 from cgitb import text
-import string
 from flask import Flask, render_template, request, Response, redirect, url_for, abort
 
 from flask_accept import accept
@@ -85,6 +86,9 @@ def fetchall(query, params):
 
 def fetchpage(query, page_number, params):
     try:
+        query_test = Query(query)
+        query_test.parse()
+
         # 1. get rows count (with count.sql.j2 template)
         with open('templates/sql/count.sql.j2', 'r') as file:
             data = file.read().rstrip()
@@ -101,11 +105,11 @@ def fetchpage(query, page_number, params):
 
         # 3. responce with object { rows, total_pages, current_page, next_page, prev_page }
         # TODO put in page size in params file
-        new_page = Page(page_content.rows, math.ceil(count/15), page_number, page_content.fields)
+        new_page = Page(page_content.rows, math.ceil(count/15), page_number, query_test.columns)
         return new_page
 
-    except Exception as e:
-        print(e)
+    except Exception as err:
+        print(err)
         print(query)
     
 

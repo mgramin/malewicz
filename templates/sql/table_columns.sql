@@ -9,5 +9,3 @@ select c.table_schema
   join information_schema.columns c on c.table_schema = t.schemaname
                                    and c.table_name = t.tablename
  where table_schema not in ('pg_catalog', 'information_schema')
-   and table_name = %(table_name)s
-   and table_schema = %(schema_name)s

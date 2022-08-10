@@ -1,0 +1,10 @@
+-- Columns
+-- Columns
+select ordinal_position          -- Pos.
+     , "column_name"             -- Name
+     , data_type                 -- Type
+     , is_nullable               -- Nullable
+     , character_maximum_length  -- Length
+  from ({% include 'sql/table_columns.sql' %}) s
+ where table_name = %(table_name)s
+   and table_schema = %(schema_name)s

@@ -1,5 +1,7 @@
-select name
-     , pg_size_pretty(raw_size) as size
+-- Top Tables
+-- Top Big Tables
+select name                               -- Relation
+     , pg_size_pretty(raw_size) as size   -- Size
   from (select table_name as name
              , pg_total_relation_size(table_schema || '.' || table_name) as raw_size
           from ({% include 'sql/tables.sql' %}) s) s

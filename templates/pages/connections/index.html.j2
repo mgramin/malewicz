@@ -1,12 +1,15 @@
+{% import 'macros/async.html.j2' as load with context %}
+
 <turbo-frame id="test_frame">
 
     <h1>Connections</h1>
 
-    <div class="row">
+    <div class="row row-cols-auto">
         <div class="col">
-            <turbo-frame id="connections_count_frame" src="/test?template=connections/connections_count.html.j2&frame=connections_count_frame">
-                {% include '_common/spinner.html.j2' %}
-            </turbo-frame>
+            {{ load.async("connections/connections_count_active.html.j2") }}
+        </div>
+        <div class="col">
+            {{ load.async("connections/connections_count.html.j2") }}
         </div>
     </div>
 

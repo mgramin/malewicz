@@ -1,8 +1,2 @@
-{% import 'sql/connections_count.sql' as connections_count_sql with context %}
-{% set connections_count = fetchone(connections_count_sql | string, params) %}
-
-<turbo-frame id="{{ frame }}">
-    
-    <h3>Total: {{ connections_count['count'] }}</h3>
-
-</turbo-frame>
+{% import 'macros/counter_card.html.j2' as card with context %}
+{{ card.counter_card('sql/connections.sql', 'Connections', '/connections') }}

@@ -1,0 +1,8 @@
+-- Tables with no stats
+-- Tables with no stats
+select "table_schema"       -- Schema
+     , "table_name"         -- Table
+     , "is_empty"           -- Empty
+     , "never_analyzed"     -- Never Analyzed
+     , "no_stats_columns"   -- No Stats Columns
+  from ({% include 'sql/tables_with_no_stats.sql' %}) s

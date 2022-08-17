@@ -1,0 +1,7 @@
+{% macro async(model_name) -%}
+
+    <turbo-frame id="{{ model_name }}" src="/test?template={{ model_name }}&frame={{ model_name }}">
+        {% include '_common/spinner.html.j2' %}
+    </turbo-frame>
+
+{%- endmacro %}

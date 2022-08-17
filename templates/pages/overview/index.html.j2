@@ -1,25 +1,20 @@
+{% import 'macros/async.html.j2' as load with context %}
+
+{% set templates = [
+    'connections/connections_count_active', 
+    'overview/long_running_queries_count', 
+    'overview/no_stats_tables_count'] %}
+
 <turbo-frame id="test_frame">
 
-  <div class="row row-cols-auto">
-    
-    <div class="col">
-      <turbo-frame id="active_connections_count_frame" src="/test?template=overview/active_connections_count.html.j2&frame=active_connections_count_frame">
-        {% include '_common/spinner.html.j2' %}
-      </turbo-frame>
-    </div>
+    <div class="row row-cols-auto">
 
-    <div class="col">
-      <turbo-frame id="long_running_queries_count_frame" src="/test?template=overview/long_running_queries_count.html.j2&frame=long_running_queries_count_frame">
-        {% include '_common/spinner.html.j2' %}
-      </turbo-frame>
-    </div>
+        {% for tmpl in templates %}
+        <div class="col">
+            {{ load.async(tmpl + ".html.j2") }}
+        </div>
+        {% endfor %}
 
-    <div class="col">
-      <turbo-frame id="no_stats_tables_count_frame" src="/test?template=overview/no_stats_tables_count.htlm.j2&frame=no_stats_tables_count_frame">
-        {% include '_common/spinner.html.j2' %}
-      </turbo-frame>
     </div>
-
-  </div>
 
 </turbo-frame>

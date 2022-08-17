@@ -1,0 +1,19 @@
+{% macro counter_card(model_path, title, link) -%}
+
+    {% import model_path as model_query with context %}
+    {% set cnt = fetchcount(model_query, params) %}
+
+    <turbo-frame id="{{ frame }}">
+
+        <div class="card text-white {{ 'bg-success' if cnt==0 else 'bg-warning' }} mb-3">
+            <div class="card-header">
+                <a href="{{ link }}" data-turbo-frame="_top" class="btn btn-primary stretched-link">{{ title }}</a>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title text-center">{{ cnt }}</h1>
+            </div>
+        </div>
+
+    </turbo-frame>
+
+{%- endmacro %}

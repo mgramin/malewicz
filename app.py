@@ -57,7 +57,7 @@ def fetchone(query, params):
     try:
         ps_connection = postgreSQL_pool.getconn()
         cursor = ps_connection.cursor()
-        cursor.execute(query, params)
+        cursor.execute(str(query), params)
         result = cursor.fetchone()
         return result
     except Exception as e:
@@ -95,7 +95,7 @@ def fetchpage(query, page_number, params):
         count_template = Template(data)
         result = count_template.render(query_text=query)
         count = fetchone(result, params)["result"]
-
+        
         # 2. get rows for page (with pageable.j2.sql template)
         with open('templates/sql/pageable.sql.j2', 'r') as file:
             data = file.read().rstrip()

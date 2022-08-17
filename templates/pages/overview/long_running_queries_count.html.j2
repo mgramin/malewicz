@@ -1,17 +1,2 @@
-{% import 'sql/connections_count_active.sql' as query %}
-{% set count = fetchcount(query, {}) %}
-
-<turbo-frame id="{{ frame }}">
-
-    <div class="col">
-      <div class="card text-white {{ 'bg-success' if count==0 else 'bg-warning' }}  mb-3">
-        <div class="card-header">
-          <a href="#" data-turbo-frame="_top" class="btn btn-primary stretched-link">Long Queries</a>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title text-center">{{ count }}</h1>
-        </div>
-      </div>    
-    </div>
-
-</turbo-frame>
+{% import 'macros/counter_card.html.j2' as card with context %}
+{{ card.counter_card('sql/long_running_queries.sql', 'Long Queries', '#') }}

@@ -88,5 +88,20 @@ select ordinal_position         -- Pos.
         query.parse()    
 
 
+
+    def test4(self):
+        query = Query("""
+-- Tables with no stats
+-- Tables with no stats
+select "table_schema"     -- Schema
+     , "table_name"       -- Table
+     , "is_empty"         -- Empty
+     , "never_analyzed"   -- Never Analyzed
+     , "no_stats_columns" -- Columns
+  from ({% include 'sql/tables_no_stats.sql' %}) s
+""")
+        query.parse()
+
+
 if __name__ == "__main__":
     unittest.main()

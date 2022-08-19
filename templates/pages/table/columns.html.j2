@@ -1,29 +1,2 @@
 {% extends "components/table.html.j2" %}
 {% set model_path = 'pages/table/columns.sql.j2' %}
-
-{% block title %}
-    <h1>Columns</h1>
-    <span>Columns</span>
-{% endblock %}
-
-{# 
-    <tbody>
-        {% for c in columns %}
-        <tr>
-            <td>{{ c.ordinal_position }}</td>
-            <td>{{ c.column_name }}</td>
-            <td>{{ c.data_type }}</td>
-            <td>
-                {% if c.is_nullable == 'YES' %}
-                <i class="bi bi-check-lg"></i>
-                {% endif %}
-            </td>
-            <td>
-                {% if c.character_maximum_length %}
-                {{ c.character_maximum_length }}
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-#}

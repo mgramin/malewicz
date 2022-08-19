@@ -6,6 +6,9 @@ class Query:
 
     # query_string = ""
     columns = {}
+    comments = ""
+    title = ""
+    description = ""
 
     def __init__(self, query_string):
         self.query_string = query_string
@@ -22,6 +25,14 @@ class Query:
             for line in cmt.splitlines():
                 clear_comments.append(line.strip().lstrip("/*").rstrip("*/").lstrip("--").strip())
             self.comments = "\n".join(clear_comments)
+
+            comment_lines = self.comments.splitlines()
+            
+            if len(comment_lines) == 1:
+                self.title = self.comments.splitlines()[0]
+            if len(comment_lines) >= 2:
+                self.title = self.comments.splitlines()[0]
+                self.description = self.comments.splitlines()[1]
 
         identifier_list = [x for x in parsed if isinstance(x, sql.IdentifierList)]
         

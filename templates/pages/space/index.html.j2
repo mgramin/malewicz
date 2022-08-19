@@ -1,29 +1,23 @@
+{% import 'macros/async.html.j2' as load with context %}
+
 <turbo-frame id="test_frame">
 
     <h1>Space</h1>
 
     <div class="row">
         <div class="row pb-3">
-            <turbo-frame id="databases_size_frame" src="/test?template=space/databases_size.html.j2&frame=databases_size_frame">
-                {% include '_common/spinner.html.j2' %}
-            </turbo-frame>
+            {{ load.async("space/databases_size.html.j2") }}
         </div>
     </div>
 
     <div class="row">
-
         <div class="col">
-            <turbo-frame id="big_tables_frame" src="/test?template=space/big_tables_chartjs.html.j2&page=1&frame=big_tables_frame">
-                {% include '_common/spinner.html.j2' %}
-            </turbo-frame>
+            {{ load.async("space/big_tables_chartjs.html.j2") }}
         </div>
 
         <div class="col">
-            <turbo-frame id="tables_size_frame" src="/test?template=space/tables_size.html.j2&page=1&frame=tables_size_frame">
-                {% include '_common/spinner.html.j2' %}
-            </turbo-frame>
+            {{ load.async("space/tables_size.html.j2") }}
         </div>
-
     </div>
 
 </turbo-frame>

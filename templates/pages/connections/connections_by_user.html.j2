@@ -1,20 +1,2 @@
-{% import 'pages/connections/connections_by_user.sql.j2' as connections_by_user_sql with context %}
-{% set chart_parameters = fetchone(connections_by_user_sql | string, params) %}
-
-{% import '_common/chartjs_doughnut.json.j2' as chartjs_doughnut_json with context %}
-
-
-<turbo-frame id="{{ frame }}">
-
-    <h3>By User</h3>
-
-    <div class="col">
-      <canvas id="connections_by_user_chart"></canvas>
-    </div>
-
-    <script>
-      var ctx = document.getElementById('connections_by_user_chart').getContext('2d');
-      var myChart = new Chart(ctx, {{ chartjs_doughnut_json }} );
-    </script>
-
-</turbo-frame>
+{% import 'macros/charts/doughnut.html.j2' as chart with context %}
+{{ chart.doughnut_chart('pages/connections/connections_by_user.sql.j2', {}, "By User") }}

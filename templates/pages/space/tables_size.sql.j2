@@ -1,5 +1,4 @@
 -- Top Tables
--- Top Big Tables
 select name                               -- Relation
      , pg_size_pretty(raw_size) as size   -- Size
   from (select table_name as name

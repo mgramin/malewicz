@@ -28,7 +28,8 @@ Malewicz is Yet Another WEB client for DB schema exploring and performance analy
 <!-- - SQL Market - Make your own templates, share it and use foreign templates -->
 - Simple and powerful integration with awesome tools, for charts, diagrams etc.
 <!-- - Support only PostgreSQL (for now) - but you might ... -->
-<!-- - Reusable SQL-queries - SQL is the main value... You can reuse your SQL in other contexts and database tools. -->
+- Strong bodrer - between SQL-scripts (it's our main value) and representation templates
+- Reusable SQL-queries - you can reuse queries in other contexts and database tools.
 
 
 ## Embedded SQL editor

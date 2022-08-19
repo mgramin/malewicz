@@ -105,7 +105,7 @@ def fetchpage(query, page_number, params):
 
         # 3. responce with object { rows, total_pages, current_page, next_page, prev_page }
         # TODO put in page size in params file
-        new_page = Page(page_content.rows, math.ceil(count/15), page_number, query_test.columns)
+        new_page = Page(page_content.rows, math.ceil(count/15), page_number, query_test.columns, query_test)
         return new_page
 
     except Exception as err:

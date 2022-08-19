@@ -4,7 +4,8 @@
 <turbo-frame id="{{ frame or 'test_frame' }}">
 
     {% block title %}
-        <h1>{{ model_name | title }}</h1>
+        <h1>{{ page_data.query.title }}</h1>
+        <span>{{ page_data.query.description }}</span>
     {% endblock %}
 
     <div class="table-responsive">

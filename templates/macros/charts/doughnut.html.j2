@@ -1,0 +1,23 @@
+{% macro doughnut_chart(model_path, params, title) -%}
+
+    {% import model_path as model_query with context %}
+    {% set chart_parameters = fetchone(model_query | string, params) %}
+
+    {% import 'macros/charts/chartjs_doughnut.json.j2' as chartjs_doughnut_json with context %}
+
+    <turbo-frame id="{{ frame }}">
+
+        <h3>{{ title }}</h3>
+
+        <div class="col">
+            <canvas id="{{ model_path }}"></canvas>
+        </div>
+
+        <script>
+            var ctx = document.getElementById('{{ model_path }}').getContext('2d');
+            var myChart = new Chart(ctx, {{ chartjs_doughnut_json }} );
+        </script>
+
+    </turbo-frame>
+
+{%- endmacro %}

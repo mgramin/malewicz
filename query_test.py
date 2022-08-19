@@ -14,6 +14,9 @@ class TestQuery(unittest.TestCase):
               from foo""")
         query.parse()
 
+        self.assertEqual("Short name", query.comments.splitlines()[0])
+        self.assertEqual("Long description", query.comments.splitlines()[1])
+
         self.assertEqual(query.columns['fld1'], 'Just comment')
         self.assertEqual(query.columns['fld2'], 'Just another comment')
         self.assertEqual(query.columns['fld3'], 'Just another comment')

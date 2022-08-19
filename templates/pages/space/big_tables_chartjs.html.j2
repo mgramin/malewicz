@@ -1,20 +1,7 @@
-{% set params = { "max_table_count": 5, "schema_name": "bookings"} %}
+{% import 'macros/charts/doughnut.html.j2' as chart with context %}
 
-{% import 'pages/space/big_tables.sql.j2' as big_tables_sql with context %}
-{% set chart_parameters = fetchone(big_tables_sql | string, params) %}
-
-{% import '_common/chartjs_doughnut.json.j2' as chartjs_doughnut_json with context %}
-
-<turbo-frame id="{{ frame }}">
-    <h3>Top 5 Tables</h3>
-
-    <div class="col">
-      <canvas id="myChart"></canvas>
-    </div>
-
-    <script>
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {{ chartjs_doughnut_json }} );
-    </script>
-
-</turbo-frame>
+{{ chart.doughnut_chart(
+  'pages/space/big_tables.sql.j2',
+  { "max_table_count": 5, "schema_name": "bookings" },
+  'Top 5 Tables')
+}}

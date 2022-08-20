@@ -1,13 +1,18 @@
 # Malewicz
 
-Hackable GUI SQL-manager written in SQL itself (and a pinch of the HTML templates)
-
+Hackable GUI SQL-manager written in SQL itself (and a pinch of the HTML templates).
 
 > "If you want something done, do it yourself. Yep!"
 >
 > Jean-Baptiste Emanuel Zorg, "The Fifth Element", 1997.
 
-[See it in action](https://malewicz.herokuapp.com)
+Malewicz is a cross-platform Database GUI tool for developers, SQL programmers, DBAs and data analysts.
+
+[Try Malewicz on Heroku](https://malewicz.herokuapp.com)
+
+![space](demo/screenshots/space.png "Space")
+
+![table](demo/screenshots/table.png "Table")
 
 
 ## Current status
@@ -17,8 +22,6 @@ Hackable GUI SQL-manager written in SQL itself (and a pinch of the HTML template
 
 ## What is Malewicz?
 
-<!-- Malewicz is a cross-platform Database GUI tool for developers, SQL programmers, database administrators, and analysts.
- -->
 Malewicz is Yet Another WEB client for DB schema exploring and performance analysis. Something like [PgHero](https://github.com/ankane/pghero), [Pgweb](https://github.com/sosedoff/pgweb) or even [phpMyAdmin](https://github.com/phpmyadmin/phpmyadmin), but with some key features:
 
 - Hackable - Malewicz was originally created specifically for hacking and extending (template driven, live reload)

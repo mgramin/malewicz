@@ -1,0 +1,8 @@
+-- FKs without Indexes
+-- FKs with Missing/Bad Indexes
+select "schema_name" -- Schema
+     , "table_name"  -- Table
+     , fk_name       -- FK
+     , issue         -- Issue
+     , cols_list     -- Columns
+  from ({% include 'sql/foreign_keys_without_indexes.sql' %}) s

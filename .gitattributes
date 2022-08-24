@@ -1,4 +1,8 @@
 *.sql linguist-detectable
 *.sql linguist-language=sql
+
 *.sql.j2 linguist-detectable
 *.sql.j2 linguist-language=sql
+
+*.html.j2 linguist-detectable
+*.html.j2 linguist-language=html

@@ -1,10 +1,11 @@
 -- Slow Queries
 -- Slowest queries, by total time
-select total_exec_time  -- Total Exec Time
-     , calls            -- Calls
-     , mean_exec_time   -- Mean Exec Time
-     , min_exec_time    -- Min Exec Time
-     , max_exec_time    -- Max Exec Time
+select total_exec_time                                   -- Total Exec Time
+     , calls                                             -- Calls
+     , mean_exec_time                                    -- Mean Exec Time
+     , min_exec_time                                     -- Min Exec Time
+     , max_exec_time                                     -- Max Exec Time
+     , concat(substring(query from 0 for 100), ' ...')   -- Query
   from ({% include 'sql/queries_top.sql' %}) as s
  order by total_exec_time desc
  limit 50

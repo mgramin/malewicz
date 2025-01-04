@@ -1,5 +1,5 @@
 host="127.0.0.1"
-database="demo"
+database="postgres"
 user="postgres"
 password="postgres"
 port=5432

@@ -21,8 +21,8 @@ select sum(calls) as calls
      , sum(local_blks_written) as local_blks_written
      , sum(temp_blks_read) as temp_blks_read
      , sum(temp_blks_written) as temp_blks_written
-     , sum(blk_read_time) as blk_read_time
-     , sum(blk_write_time) as blk_write_time
+   --   , sum(blk_read_time) as blk_read_time
+   --   , sum(blk_write_time) as blk_write_time
      , array_agg(queryid) as queryids
   from pg_stat_statements
  group by userid, dbid, query
